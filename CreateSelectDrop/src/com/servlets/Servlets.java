@@ -29,33 +29,42 @@ public class Servlets extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		Connection con = null;
-		
-		
-			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				con =DriverManager.getConnection("jdbc:mysql://localhost:3306/animated_movies","root","root");
-				PreparedStatement ps = con.prepareStatement("select * from movies where title='Inside Out'");
-				ResultSet rs = ps.executeQuery();
-				
-		while(rs.next()) {
-					
-				}
-		
-		           con.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
-	}
+		   try {
+                         PrintWriter out = response.getWriter();
+                         out.println("<html><body>");
+                         
+                        InputStream in = getServletContext().getResourceAsStream("/WEB-INF/config.properties");
+                        Properties props = new Properties();
+                        props.load(in);
+                        
+                        
+                        DBConnection conn = new DBConnection(props.getProperty("url"), props.getProperty("userid"), props.getProperty("password"));
+                        Statement stmt = conn.getConnection().createStatement();
+                        stmt.executeUpdate("create database mydatabase");
+                        out.println("Created database: mydatabase<br>");
+                        stmt.executeUpdate("use mydatabase");
+                        out.println("Selected database: mydatabase<br>");
+                        stmt.executeUpdate("drop database mydatabase");
+                        stmt.close();
+                        out.println("Dropped database: mydatabase<br>");
+                        
+                        
+                        
+                        
+                        
+                        conn.closeConnection();
+                        
+                        
+                        out.println("</body></html>");
+                        conn.closeConnection();
+                        
+                } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                } catch (SQLException e) {
+                        e.printStackTrace();
+                }
+        }
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

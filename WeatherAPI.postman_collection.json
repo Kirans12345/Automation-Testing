@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "f4a3ad19-e371-49a3-804c-6215e408deb0",
+		"name": "WeatherAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31715051"
+	},
+	"item": [
+		{
+			"name": "GetWeatherLatLong",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base_URL}}?lat=28.61&lon=77.20&appid={{API_key}}",
+					"host": [
+						"{{Base_URL}}"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "28.61"
+						},
+						{
+							"key": "lon",
+							"value": "77.20"
+						},
+						{
+							"key": "appid",
+							"value": "{{API_key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCityID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.openweathermap.org/data/2.5/weather?id=1261588&appid=90149396bf29b1623a4a4954a21009c4",
+					"protocol": "https",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1261588"
+						},
+						{
+							"key": "appid",
+							"value": "90149396bf29b1623a4a4954a21009c4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCityByName",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"city\",\"Hyderabad\");\r",
+							"\r",
+							"pm.globals.set(\"global_var1\",\"global1\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.openweathermap.org/data/2.5/weather?q=Hyderabad&appid=90149396bf29b1623a4a4954a21009c4&units=metric",
+					"protocol": "https",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Hyderabad"
+						},
+						{
+							"key": "appid",
+							"value": "90149396bf29b1623a4a4954a21009c4"
+						},
+						{
+							"key": "units",
+							"value": "metric"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetLanguage",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.openweathermap.org/data/2.5/weather?id=524901&lang=fr&appid=90149396bf29b1623a4a4954a21009c4",
+					"protocol": "https",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "524901"
+						},
+						{
+							"key": "lang",
+							"value": "fr"
+						},
+						{
+							"key": "appid",
+							"value": "90149396bf29b1623a4a4954a21009c4"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

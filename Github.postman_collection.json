@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "2a331fb6-adc7-4c9c-80d4-5292a1e6d0fc",
+		"name": "Github",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31715051"
+	},
+	"item": [
+		{
+			"name": "GitHubRepo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 200\", function(){\r",
+							"\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function(){\r",
+							"\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type should be application/json\", function(){\r",
+							"\r",
+							"    pm.response.to.have.header(\"Content-Type\",\"application/json; charset=utf-8\");\r",
+							"\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is valid JSON\", function(){\r",
+							"\r",
+							"    pm.response.to.be.json;\r",
+							"\r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check specific field existence\", function(){\r",
+							"\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"node_id\");\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"full_name\");\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"private\");\r",
+							"\r",
+							"\r",
+							"});\r",
+							"\r",
+							"//How to fetch json response in variable \r",
+							"\r",
+							"var resData = JSON.parse(responseBody);\r",
+							"\r",
+							"console.log(resData[0].id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "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",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.github.com/user/repos",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"user",
+						"repos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Git-SpecificRepo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "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",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.github.com/user/repos/:owner/:repos",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"user",
+						"repos",
+						":owner",
+						":repos"
+					],
+					"variable": [
+						{
+							"key": "owner",
+							"value": "Kiran S"
+						},
+						{
+							"key": "repos",
+							"value": "gitfirst"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

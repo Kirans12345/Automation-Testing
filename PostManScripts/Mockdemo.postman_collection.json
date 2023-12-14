@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "5c7185ed-34b8-4335-9f03-62a12eafe762",
+		"name": "Mockdemo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31715051"
+	},
+	"item": [
+		{
+			"name": "mockdemo",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/mockdemo",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"mockdemo"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/mockdemo",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"mockdemo"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": {\n        \"name\": \"invalidParamError\",\n        \"message\": \"body.visibilityStatus is invalid\"\n    }\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://fe54e07a-f517-4aab-aa78-2d0a6c92f558.mock.pstmn.io"
+		}
+	]
+}
